@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="面试，推荐算法，leetcode算法">
-<meta property="og:type" content="website">
-<meta property="og:title" content="风哥你真帅">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="协同过滤什么是协同过滤？协同过滤（Collaborative Filtering，CF）是一种基于用户行为数据的推荐算法。它的核心思想是利用用户群体的行为来找到相似的用户或者相似的物品，从而为用户推荐可能感兴趣的物品。例如，在一个电商平台上，如果用户 A 和用户 B 购买的商品有很多重叠部分，当用户 A 购买了一个新商品，而用户 B 还没购买时，就可以把这个商品推荐给用户 B。这种方法不依赖于物品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="协同过滤（Collaborative Filtering，CF）">
+<meta property="og:url" content="http://example.com/2024/11/27/collaborative-filtering/index.html">
 <meta property="og:site_name" content="风哥你真帅">
-<meta property="og:description" content="面试，推荐算法，leetcode算法">
+<meta property="og:description" content="协同过滤什么是协同过滤？协同过滤（Collaborative Filtering，CF）是一种基于用户行为数据的推荐算法。它的核心思想是利用用户群体的行为来找到相似的用户或者相似的物品，从而为用户推荐可能感兴趣的物品。例如，在一个电商平台上，如果用户 A 和用户 B 购买的商品有很多重叠部分，当用户 A 购买了一个新商品，而用户 B 还没购买时，就可以把这个商品推荐给用户 B。这种方法不依赖于物品">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-27T14:26:27.000Z">
+<meta property="article:modified_time" content="2024-12-04T14:06:11.821Z">
 <meta property="article:author" content="风哥你真帅">
+<meta property="article:tag" content="推荐系统基础">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2024/11/27/collaborative-filtering/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>风哥你真帅</title>
+  <title>协同过滤（Collaborative Filtering，CF） | 风哥你真帅</title>
   
 
 
@@ -254,9 +257,10 @@ mjx-container[display="true"] + br {
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -272,10 +276,9 @@ mjx-container[display="true"] + br {
       <meta itemprop="name" content="风哥你真帅">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/11/27/collaborative-filtering/" class="post-title-link" itemprop="url">协同过滤（Collaborative Filtering，CF）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          协同过滤（Collaborative Filtering，CF）
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -305,7 +308,7 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h1><h2 id="什么是协同过滤？"><a href="#什么是协同过滤？" class="headerlink" title="什么是协同过滤？"></a>什么是协同过滤？</h2><p>协同过滤（Collaborative Filtering，CF）是一种基于用户行为数据的推荐算法。<br>它的核心思想是利用用户群体的行为来找到相似的用户或者相似的物品，从而为用户推荐可能感兴趣的物品。<br>例如，在一个电商平台上，如果用户 A 和用户 B 购买的商品有很多重叠部分，当用户 A 购买了一个新商品，而用户 B 还没购买时，就可以把这个商品推荐给用户 B。<br>这种方法不依赖于物品本身的内容属性（如电影的类型、书籍的主题等），而是侧重于用户对物品的行为（如购买、评分、浏览等）。<br>通过分析大量用户的行为数据，挖掘出用户之间的相似性和物品之间的关联，以此来生成推荐列表。</p>
+        <h1 id="协同过滤"><a href="#协同过滤" class="headerlink" title="协同过滤"></a>协同过滤</h1><h2 id="什么是协同过滤？"><a href="#什么是协同过滤？" class="headerlink" title="什么是协同过滤？"></a>什么是协同过滤？</h2><p>协同过滤（Collaborative Filtering，CF）是一种基于用户行为数据的推荐算法。<br>它的核心思想是利用用户群体的行为来找到相似的用户或者相似的物品，从而为用户推荐可能感兴趣的物品。<br>例如，在一个电商平台上，如果用户 A 和用户 B 购买的商品有很多重叠部分，当用户 A 购买了一个新商品，而用户 B 还没购买时，就可以把这个商品推荐给用户 B。<br>这种方法不依赖于物品本身的内容属性（如电影的类型、书籍的主题等），而是侧重于用户对物品的行为（如购买、评分、浏览等）。<br>通过分析大量用户的行为数据，挖掘出用户之间的相似性和物品之间的关联，以此来生成推荐列表。</p>
 <h2 id="基于用户的协同过滤（User-CF-Based）"><a href="#基于用户的协同过滤（User-CF-Based）" class="headerlink" title="基于用户的协同过滤（User - CF - Based）"></a>基于用户的协同过滤（User - CF - Based）</h2><h3 id="基于用户的协同过滤（User-CF-Based）是什么？"><a href="#基于用户的协同过滤（User-CF-Based）是什么？" class="headerlink" title="基于用户的协同过滤（User - CF - Based）是什么？"></a>基于用户的协同过滤（User - CF - Based）是什么？</h3><p>基于用户的协同过滤是协同过滤算法的一种类型。它主要关注用户之间的相似性。<br>以社交网络中的音乐推荐为例，它会先找出和你在音乐喜好上相似的其他用户（比如你们都喜欢流行音乐，对某些歌手的评分很接近），然后根据这些相似用户所喜欢的音乐来为你推荐歌曲。</p>
 <h3 id="基于用户的协同过滤（User-CF-Based）的思想是什么？"><a href="#基于用户的协同过滤（User-CF-Based）的思想是什么？" class="headerlink" title="基于用户的协同过滤（User - CF - Based）的思想是什么？"></a>基于用户的协同过滤（User - CF - Based）的思想是什么？</h3><p>其思想是 “人以群分”。假设具有相似兴趣爱好的用户，他们对其他物品的偏好也会相似。<br>如果用户 A 和用户 B 在过去对很多音乐的评价都很相似，那么当用户 A 发现了一首新的好听的歌曲并给予好评时，就有理由相信用户 B 也可能会喜欢这首歌曲，所以把这首歌曲推荐给用户 B。</p>
 <h3 id="基于用户的协同过滤（User-CF-Based）的推荐例子？"><a href="#基于用户的协同过滤（User-CF-Based）的推荐例子？" class="headerlink" title="基于用户的协同过滤（User - CF - Based）的推荐例子？"></a>基于用户的协同过滤（User - CF - Based）的推荐例子？</h3><p>假设我们有一个简单的电影评分系统，有以下5个用户（A、B、C、D、E）和5部电影（《电影1》、《电影2》、《电影3》、《电影4》、《电影5》），评分范围是1 - 5分，数据如下表所示：</p>
@@ -551,21 +554,26 @@ mjx-container[display="true"] + br {
 <li>推荐系统百面百搭 <a target="_blank" rel="noopener" href="https://github.com/km1994/RES-Interview-Notes">https://github.com/km1994/RES-Interview-Notes</a></li>
 </ol>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag"># 推荐系统基础</a>
+          </div>
+
+        
+
+
+        
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -618,6 +626,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">协同过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是协同过滤？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89%E7%9A%84%E6%80%9D%E6%83%B3%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.2.2.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）的思想是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89%E7%9A%84%E6%8E%A8%E8%8D%90%E4%BE%8B%E5%AD%90%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）的推荐例子？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.2.4.</span> <span class="nav-text">推荐步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.2.5.</span> <span class="nav-text">优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89%E7%9A%84%E6%80%9D%E6%83%B3%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.3.2.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）的思想是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89%E7%9A%84%E6%8E%A8%E8%8D%90%E4%BE%8B%E5%AD%90%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）的推荐例子？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.4.</span> <span class="nav-text">基于物品协同过滤的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E6%AD%A5%E9%AA%A4-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">推荐步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-CF-Based-%E4%B8%8E-Item-CF-Based-%E5%AF%B9%E6%AF%94%E7%AF%87"><span class="nav-number">1.4.3.</span> <span class="nav-text">User - CF - Based 与 Item - CF - Based 对比篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#User-CF-Based-%E4%B8%8E-Item-CF-Based-%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">User - CF - Based 与 Item - CF - Based 的应用场景的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="nav-number">1.4.3.1.1.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）应用场景：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="nav-number">1.4.3.1.2.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）应用场景：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#User-CF-Based-%E4%B8%8E-Item-CF-Based-%E7%9A%84%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">User - CF - Based 与 Item - CF - Based 的存在问题的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88User-CF-Based%EF%BC%89%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.4.3.2.1.</span> <span class="nav-text">基于用户的协同过滤（User - CF - Based）存在问题：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%EF%BC%88Item-CF-Based%EF%BC%89%E5%AD%98%E5%9C%A8%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.4.3.2.2.</span> <span class="nav-text">基于物品的协同过滤（Item - CF - Based）存在问题：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#User-CF-Based-%E4%B8%8E-Item-CF-Based-%E9%97%AE%E9%A2%98%E7%AF%87"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">User - CF - Based 与 Item - CF - Based 问题篇</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%95%B0%E6%8D%AE%E7%A8%80%E7%96%8F%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">解决数据稀疏性问题：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%86%B7%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">解决冷启动问题：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%88%97%E8%A1%A8"><span class="nav-number">1.5.</span> <span class="nav-text">参考列表</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
