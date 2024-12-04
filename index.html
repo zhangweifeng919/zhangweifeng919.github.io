@@ -228,6 +228,21 @@ mjx-container[display="true"] + br {
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
@@ -291,8 +306,17 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-12-04 22:06:11" itemprop="dateModified" datetime="2024-12-04T22:06:11+08:00">2024-12-04</time>
+                <time title="修改时间：2024-12-04 22:33:52" itemprop="dateModified" datetime="2024-12-04T22:33:52+08:00">2024-12-04</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">推荐系统基础</span></a>
+                </span>
+            </span>
 
           
 
@@ -365,7 +389,7 @@ mjx-container[display="true"] + br {
 </tbody>
 </table>
 </div>
-<h3 id="推荐步骤"><a href="#推荐步骤" class="headerlink" title="推荐步骤"></a>推荐步骤</h3><ol>
+<h4 id="推荐步骤"><a href="#推荐步骤" class="headerlink" title="推荐步骤"></a>推荐步骤</h4><ol>
 <li><strong>数据收集</strong><ul>
 <li>我们已经有了上述用户对电影的评分数据，这是我们进行协同过滤的基础。这些数据可以存储在数据库中，方便后续处理。</li>
 </ul>
@@ -391,17 +415,17 @@ mjx-container[display="true"] + br {
 </ul>
 </li>
 </ol>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
 <li>简单直观，易于理解和解释</li>
 <li>计算简单，不需要复杂的模型和参数</li>
-<li>可以发现潜在的兴趣点，相似的人有了新的兴趣点，可以推给其他人<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li>可以发现潜在的兴趣点，相似的人有了新的兴趣点，可以推给其他人<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5></li>
 <li>冷启动受限，新用户没有足够的行为数据难以找到相似的人进行良好的推荐</li>
 <li>良好的推荐对数据和相似度计算的算法要求高，比如评分数据稀疏，方差大，不同的相似度计算有不同的优缺点如何平衡</li>
 <li>随着用户数量和物品的增加，都会增加计算量</li>
 </ul>
 <h2 id="基于物品的协同过滤（Item-CF-Based）"><a href="#基于物品的协同过滤（Item-CF-Based）" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）"></a>基于物品的协同过滤（Item - CF - Based）</h2><h3 id="基于物品的协同过滤（Item-CF-Based）是什么？"><a href="#基于物品的协同过滤（Item-CF-Based）是什么？" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）是什么？"></a>基于物品的协同过滤（Item - CF - Based）是什么？</h3><p>基于物品的协同过滤主要是关注物品之间的相似性来进行推荐，但不关注物品本身属性的相似性。<br>而是利用物品的共现关系，比如A和B经常一起出现在用户U的购物篮中，那么A和B可能存在一定的相似性。<br>当用户U购买了A，那么B也可能被推荐给U。</p>
 <h3 id="基于物品的协同过滤（Item-CF-Based）的思想是什么？"><a href="#基于物品的协同过滤（Item-CF-Based）的思想是什么？" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）的思想是什么？"></a>基于物品的协同过滤（Item - CF - Based）的思想是什么？</h3><p>其思想是基于物品之间的关联性。如果很多用户对物品 A 和物品 B 都有相似的行为（如都喜欢或者都购买），那么可以认为物品 A 和物品 B 是相似的。当一个用户对物品 A 表现出兴趣时，就可以推荐与之相似的物品 B。比如，在图书推荐中，如果两本书经常被同一批读者借阅，那么这两本书很可能在内容、风格等方面有相似之处，就可以互相推荐。</p>
-<h3 id="基于物品的协同过滤（Item-CF-Based）的推荐例子？"><a href="#基于物品的协同过滤（Item-CF-Based）的推荐例子？" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）的推荐例子？"></a>基于物品的协同过滤（Item - CF - Based）的推荐例子？</h3><h2 id="基于物品协同过滤的例子"><a href="#基于物品协同过滤的例子" class="headerlink" title="基于物品协同过滤的例子"></a>基于物品协同过滤的例子</h2><p>假设有一个在线书店，有5位读者（甲、乙、丙、丁、戊）对4本书（《书籍A》、《书籍B》、《书籍C》、《书籍D》）进行了购买（用1表示购买，0表示未购买），数据如下表所示：</p>
+<h3 id="基于物品的协同过滤（Item-CF-Based）的推荐例子？"><a href="#基于物品的协同过滤（Item-CF-Based）的推荐例子？" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）的推荐例子？"></a>基于物品的协同过滤（Item - CF - Based）的推荐例子？</h3><p>假设有一个在线书店，有5位读者（甲、乙、丙、丁、戊）对4本书（《书籍A》、《书籍B》、《书籍C》、《书籍D》）进行了购买（用1表示购买，0表示未购买），数据如下表所示：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -452,7 +476,7 @@ mjx-container[display="true"] + br {
 </tbody>
 </table>
 </div>
-<h3 id="推荐步骤-1"><a href="#推荐步骤-1" class="headerlink" title="推荐步骤"></a>推荐步骤</h3><ol>
+<h4 id="推荐步骤-1"><a href="#推荐步骤-1" class="headerlink" title="推荐步骤"></a>推荐步骤</h4><ol>
 <li><strong>计算物品相似度矩阵（以余弦相似度为例）</strong><ul>
 <li>首先计算《书籍A》和《书籍B》的相似度。<ul>
 <li>《书籍A》的购买向量为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="16.154ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 7140.2 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D434" d="M208 74Q208 50 254 46Q272 46 272 35Q272 34 270 22Q267 8 264 4T251 0Q249 0 239 0T205 1T141 2Q70 2 50 0H42Q35 7 35 11Q37 38 48 46H62Q132 49 164 96Q170 102 345 401T523 704Q530 716 547 716H555H572Q578 707 578 706L606 383Q634 60 636 57Q641 46 701 46Q726 46 726 36Q726 34 723 22Q720 7 718 4T704 0Q701 0 690 0T651 1T578 2Q484 2 455 0H443Q437 6 437 9T439 27Q443 40 445 43L449 46H469Q523 49 533 63L521 213H283L249 155Q208 86 208 74ZM516 260Q516 271 504 416T490 562L463 519Q447 492 400 412L310 260L413 259Q516 259 516 260Z"></path></g><g data-mml-node="mo" transform="translate(1027.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(2083.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(2472.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(2972.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(3417.2,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(3917.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(4361.9,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(4861.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(5306.6,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(5806.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(6251.2,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(6751.2,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>，《书籍B》的购买向量为<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="16.175ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 7149.2 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mo" transform="translate(1036.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mo" transform="translate(2092.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mn" transform="translate(2481.6,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(2981.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(3426.2,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(3926.2,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(4370.9,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(4870.9,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(5315.6,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(5815.6,0)"><path data-c="2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path></g><g data-mml-node="mn" transform="translate(6260.2,0)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(6760.2,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container>。</li>
@@ -528,21 +552,21 @@ mjx-container[display="true"] + br {
 <li>冷启动问题：当新用户或者新物品加入时，无法进行推荐。</li>
 <li>推荐多样性受限：可能会过度依赖物品本身的属性来确定相似性，导致推荐的物品在类型等方面比较相似，缺乏多样性。例如，推荐的电影可能都是同一类型的爱情片，而忽略了用户可能也有兴趣尝试其他类型的电影。</li>
 </ul>
-<h3 id="User-CF-Based-与-Item-CF-Based-对比篇"><a href="#User-CF-Based-与-Item-CF-Based-对比篇" class="headerlink" title="User - CF - Based 与 Item - CF - Based 对比篇"></a>User - CF - Based 与 Item - CF - Based 对比篇</h3><h4 id="User-CF-Based-与-Item-CF-Based-的应用场景的区别"><a href="#User-CF-Based-与-Item-CF-Based-的应用场景的区别" class="headerlink" title="User - CF - Based 与 Item - CF - Based 的应用场景的区别"></a>User - CF - Based 与 Item - CF - Based 的应用场景的区别</h4><h5 id="基于用户的协同过滤（User-CF-Based）应用场景："><a href="#基于用户的协同过滤（User-CF-Based）应用场景：" class="headerlink" title="基于用户的协同过滤（User - CF - Based）应用场景："></a>基于用户的协同过滤（User - CF - Based）应用场景：</h5><ul>
+<h2 id="User-CF-Based-与-Item-CF-Based-对比篇"><a href="#User-CF-Based-与-Item-CF-Based-对比篇" class="headerlink" title="User - CF - Based 与 Item - CF - Based 对比篇"></a>User - CF - Based 与 Item - CF - Based 对比篇</h2><h3 id="User-CF-Based-与-Item-CF-Based-的应用场景的区别"><a href="#User-CF-Based-与-Item-CF-Based-的应用场景的区别" class="headerlink" title="User - CF - Based 与 Item - CF - Based 的应用场景的区别"></a>User - CF - Based 与 Item - CF - Based 的应用场景的区别</h3><h4 id="基于用户的协同过滤（User-CF-Based）应用场景："><a href="#基于用户的协同过滤（User-CF-Based）应用场景：" class="headerlink" title="基于用户的协同过滤（User - CF - Based）应用场景："></a>基于用户的协同过滤（User - CF - Based）应用场景：</h4><ul>
 <li>社交网络：在社交平台上推荐好友可能感兴趣的内容，如微博推荐用户可能感兴趣的话题给用户的好友。因为在社交网络中，人的兴趣传播比较重要，而且用户之间的相似性可以更好地体现社交关系。</li>
-<li>兴趣发现平台：像一些新的兴趣发现类的应用，例如小众音乐发现平台。可以根据相似用户的兴趣来挖掘新的音乐风格，帮助用户拓展音乐口味。<h5 id="基于物品的协同过滤（Item-CF-Based）应用场景："><a href="#基于物品的协同过滤（Item-CF-Based）应用场景：" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）应用场景："></a>基于物品的协同过滤（Item - CF - Based）应用场景：</h5></li>
+<li>兴趣发现平台：像一些新的兴趣发现类的应用，例如小众音乐发现平台。可以根据相似用户的兴趣来挖掘新的音乐风格，帮助用户拓展音乐口味。<h4 id="基于物品的协同过滤（Item-CF-Based）应用场景："><a href="#基于物品的协同过滤（Item-CF-Based）应用场景：" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）应用场景："></a>基于物品的协同过滤（Item - CF - Based）应用场景：</h4></li>
 <li>电商平台：推荐与用户购买过的商品相似的商品。例如，在亚马逊上，当用户购买了一本小说，推荐其他同类型或者作者的小说。因为电商平台的物品属性比较明确，利用物品相似性推荐可以更精准地推荐用户可能需要的商品。</li>
 <li>内容平台：如视频平台推荐与用户观看过的视频相似的视频。例如，在爱奇艺上，对于喜欢古装剧的用户，推荐其他古装剧。</li>
 </ul>
-<h4 id="User-CF-Based-与-Item-CF-Based-的存在问题的区别"><a href="#User-CF-Based-与-Item-CF-Based-的存在问题的区别" class="headerlink" title="User - CF - Based 与 Item - CF - Based 的存在问题的区别"></a>User - CF - Based 与 Item - CF - Based 的存在问题的区别</h4><h5 id="基于用户的协同过滤（User-CF-Based）存在问题："><a href="#基于用户的协同过滤（User-CF-Based）存在问题：" class="headerlink" title="基于用户的协同过滤（User - CF - Based）存在问题："></a>基于用户的协同过滤（User - CF - Based）存在问题：</h5><ul>
+<h3 id="User-CF-Based-与-Item-CF-Based-的存在问题的区别"><a href="#User-CF-Based-与-Item-CF-Based-的存在问题的区别" class="headerlink" title="User - CF - Based 与 Item - CF - Based 的存在问题的区别"></a>User - CF - Based 与 Item - CF - Based 的存在问题的区别</h3><h4 id="基于用户的协同过滤（User-CF-Based）存在问题："><a href="#基于用户的协同过滤（User-CF-Based）存在问题：" class="headerlink" title="基于用户的协同过滤（User - CF - Based）存在问题："></a>基于用户的协同过滤（User - CF - Based）存在问题：</h4><ul>
 <li>冷启动问题（用户角度）：对于新用户，由于没有足够的行为数据，很难找到相似用户，从而无法进行有效的推荐。例如，一个新注册的用户在电商平台上还没购买任何商品，很难根据用户的协同过滤为他推荐商品。</li>
-<li>数据稀疏性和计算复杂性：如前面提到的，用户对物品的评价数据稀疏，而且计算用户之间的相似度计算量很大。<h5 id="基于物品的协同过滤（Item-CF-Based）存在问题："><a href="#基于物品的协同过滤（Item-CF-Based）存在问题：" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）存在问题："></a>基于物品的协同过滤（Item - CF - Based）存在问题：</h5></li>
+<li>数据稀疏性和计算复杂性：如前面提到的，用户对物品的评价数据稀疏，而且计算用户之间的相似度计算量很大。<h4 id="基于物品的协同过滤（Item-CF-Based）存在问题："><a href="#基于物品的协同过滤（Item-CF-Based）存在问题：" class="headerlink" title="基于物品的协同过滤（Item - CF - Based）存在问题："></a>基于物品的协同过滤（Item - CF - Based）存在问题：</h4></li>
 <li>冷启动问题（物品角度）：新物品很难快速找到与之相似的物品进行推荐。例如，新上架的电影没有用户评价和关联，就不容易被推荐。</li>
 <li>推荐多样性不足：容易受到物品属性的限制，推荐的物品可能在类别等方面比较相似，不能很好地满足用户的多样化需求。</li>
 </ul>
-<h4 id="User-CF-Based-与-Item-CF-Based-问题篇"><a href="#User-CF-Based-与-Item-CF-Based-问题篇" class="headerlink" title="User - CF - Based 与 Item - CF - Based 问题篇"></a>User - CF - Based 与 Item - CF - Based 问题篇</h4><h5 id="解决数据稀疏性问题："><a href="#解决数据稀疏性问题：" class="headerlink" title="解决数据稀疏性问题："></a>解决数据稀疏性问题：</h5><ul>
+<h3 id="User-CF-Based-与-Item-CF-Based-问题篇"><a href="#User-CF-Based-与-Item-CF-Based-问题篇" class="headerlink" title="User - CF - Based 与 Item - CF - Based 问题篇"></a>User - CF - Based 与 Item - CF - Based 问题篇</h3><h4 id="解决数据稀疏性问题："><a href="#解决数据稀疏性问题：" class="headerlink" title="解决数据稀疏性问题："></a>解决数据稀疏性问题：</h4><ul>
 <li>数据填充方法：对于用户 - 物品评分矩阵中的缺失值，可以采用一些填充方法。例如，使用均值填充，即对于某个用户未评分的物品，用该用户已评分物品的平均分来填充；或者使用基于相似用户或相似物品的填充方法。如果用户 A 和用户 B 很相似，而用户 A 对某物品有评分，那么可以用用户 A 的评分来填充用户 B 对该物品的评分。</li>
-<li>采用多种数据源：除了用户的评分和购买行为数据，还可以结合其他数据，如用户的浏览行为、搜索记录等。例如，在电商平台上，用户虽然没有购买某商品，但经常浏览该商品的详情页，这也可以作为一种兴趣信号，来缓解数据稀疏性问题。<h5 id="解决冷启动问题："><a href="#解决冷启动问题：" class="headerlink" title="解决冷启动问题："></a>解决冷启动问题：</h5></li>
+<li>采用多种数据源：除了用户的评分和购买行为数据，还可以结合其他数据，如用户的浏览行为、搜索记录等。例如，在电商平台上，用户虽然没有购买某商品，但经常浏览该商品的详情页，这也可以作为一种兴趣信号，来缓解数据稀疏性问题。<h4 id="解决冷启动问题："><a href="#解决冷启动问题：" class="headerlink" title="解决冷启动问题："></a>解决冷启动问题：</h4></li>
 <li>对于新用户（User - CF - Based）：可以先采用基于内容的推荐。例如，在电影推荐系统中，对于新用户，先根据用户注册时填写的性别、年龄、爱好等信息推荐一些热门电影或者符合其基本信息的电影。当用户有了一定的行为数据后，再结合基于用户的协同过滤。</li>
 <li>对于新物品（Item - CF - Based）：可以利用物品的内容属性进行初始推荐。比如，对于一本新书，可以根据书的类别、作者等信息推荐给对该类别或作者感兴趣的用户。同时，积极收集用户对新物品的反馈，尽快建立物品之间的相似关系。</li>
 </ul>
@@ -635,9 +659,17 @@ mjx-container[display="true"] + br {
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
