@@ -50,8 +50,3 @@ class Solution:
         # 返回根部
         return my_heap[0]
 ```
-python 实现一个小根堆
-```python
-
-
-```
