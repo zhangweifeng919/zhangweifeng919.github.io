@@ -275,6 +275,89 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/08/02/quantitative-trading-indicators/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="风哥你真帅">
+      <meta itemprop="description" content="面试，推荐算法，leetcode算法">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风哥你真帅">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/08/02/quantitative-trading-indicators/" class="post-title-link" itemprop="url">量化交易的常用指标</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-08-02 10:31:58 / 修改时间：15:22:41" itemprop="dateCreated datePublished" datetime="2025-08-02T10:31:58+08:00">2025-08-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/" itemprop="url" rel="index"><span itemprop="name">量化交易</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ul>
+<li>open：开盘价</li>
+<li>close： 收盘价</li>
+<li>high：最高价</li>
+<li>low：最低价</li>
+<li>volume：成交量</li>
+</ul>
+<h1 id="MA"><a href="#MA" class="headerlink" title="MA"></a>MA</h1><p>也即简单移动平均线(Sample Moving Average)，就是把最近N天的收盘价加起来然后除以N。<br>通常用在趋势分析上，比如5日均线、20日均线。<br>当5日均线上穿20日均线时，认为是买入信号；当5日均线下穿20日均线时，认为是卖出信号。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_analysis_MA</span>(<span class="params">df</span>):</span><br><span class="line">    df[<span class="string">&#x27;MA5&#x27;</span>] = ta.MA(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">5</span>)</span><br><span class="line">    df[<span class="string">&#x27;MA20&#x27;</span>] = ta.MA(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">20</span>)</span><br><span class="line">    <span class="comment"># 买入信号：5日均线上穿20日均线（金叉）</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;MA5&#x27;</span>] &gt; df[<span class="string">&#x27;MA20&#x27;</span>]) &amp; (df[<span class="string">&#x27;MA5&#x27;</span>].shift(<span class="number">1</span>) &lt;= df[<span class="string">&#x27;MA20&#x27;</span>].shift(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卖出信号：5日均线下穿20日均线（死叉）</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;MA5&#x27;</span>] &lt; df[<span class="string">&#x27;MA20&#x27;</span>]) &amp; (df[<span class="string">&#x27;MA5&#x27;</span>].shift(<span class="number">1</span>) &gt;= df[<span class="string">&#x27;MA20&#x27;</span>].shift(<span class="number">1</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="EMA"><a href="#EMA" class="headerlink" title="EMA"></a>EMA</h1><p>指数移动平均线（Exponential Moving Average，简称EMA），是以指数递减的方式计算得出的加权移动平均数。日期越近的权重越大。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_analysis_EMA</span>(<span class="params">df</span>):</span><br><span class="line">    df[<span class="string">&#x27;EMA5&#x27;</span>] = ta.EMA(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">5</span>)</span><br><span class="line">    df[<span class="string">&#x27;EMA20&#x27;</span>] = ta.EMA(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">20</span>)</span><br><span class="line">    <span class="comment"># 买入信号：5日均线上穿20日均线（金叉）</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;EMA5&#x27;</span>] &gt; df[<span class="string">&#x27;EMA20&#x27;</span>]) &amp; (df[<span class="string">&#x27;EMA5&#x27;</span>].shift(<span class="number">1</span>) &lt;= df[<span class="string">&#x27;EMA20&#x27;</span>].shift(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卖出信号：5日均线下穿20日均线（死叉）</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;EMA5&#x27;</span>] &lt; df[<span class="string">&#x27;EMA20&#x27;</span>]) &amp; (df[<span class="string">&#x27;EMA5&#x27;</span>].shift(<span class="number">1</span>) &gt;= df[<span class="string">&#x27;EMA20&#x27;</span>].shift(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="MACD"><a href="#MACD" class="headerlink" title="MACD"></a>MACD</h1><p>MACD（Moving Average Convergence Divergence）指标是利用短期（常用为12日EMA，即指数移动平均线）均线与长期（常用为26 日EMA）均线的聚合与分离状况，对买进、卖出时机作出研判的技术分析工具。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_analysis_macd</span>(<span class="params">df</span>):</span><br><span class="line">    <span class="comment"># 计算MACD</span></span><br><span class="line">    df[<span class="string">&#x27;macd&#x27;</span>], df[<span class="string">&#x27;signal&#x27;</span>], df[<span class="string">&#x27;hist&#x27;</span>] = ta.MACD(df[<span class="string">&#x27;close&#x27;</span>], </span><br><span class="line">                                                    fastperiod=<span class="number">12</span>,  </span><br><span class="line">                                                    slowperiod=<span class="number">26</span>,  </span><br><span class="line">                                                    signalperiod=<span class="number">9</span>)</span><br><span class="line">    <span class="comment"># 买入信号：MACD线从下往上穿过信号线（金叉）</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;macd&#x27;</span>] &gt; df[<span class="string">&#x27;signal&#x27;</span>]) &amp; (df[<span class="string">&#x27;macd&#x27;</span>].shift(<span class="number">1</span>) &lt;= df[<span class="string">&#x27;signal&#x27;</span>].shift(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卖出信号：MACD线从上往下穿过信号线（死叉）</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;macd&#x27;</span>] &lt; df[<span class="string">&#x27;signal&#x27;</span>]) &amp; (df[<span class="string">&#x27;macd&#x27;</span>].shift(<span class="number">1</span>) &gt;= df[<span class="string">&#x27;signal&#x27;</span>].shift(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="RSI"><a href="#RSI" class="headerlink" title="RSI"></a>RSI</h1><p>RSI（Relative Strength Index）指标，即相对强弱指数。计算是否是超买或者超卖。<br>计算方式是计算一定时期内的收盘价涨幅的平均值与跌幅的平均值的比值，来衡量多空力量。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_analysis_rsi</span>(<span class="params">df</span>):</span><br><span class="line">    <span class="comment"># 计算RSI </span></span><br><span class="line">    df[<span class="string">&#x27;RSI&#x27;</span>] = ta.RSI(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">14</span>)</span><br><span class="line">    <span class="comment"># 生成RSI买卖信号</span></span><br><span class="line">    <span class="comment"># 超卖区域(买入信号): RSI从下方穿过30</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;RSI&#x27;</span>] &gt; <span class="number">30</span>) &amp; (df[<span class="string">&#x27;RSI&#x27;</span>].shift(<span class="number">1</span>) &lt;= <span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 超买区域(卖出信号): RSI从上方穿过70</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;RSI&#x27;</span>] &lt; <span class="number">70</span>) &amp; (df[<span class="string">&#x27;RSI&#x27;</span>].shift(<span class="number">1</span>) &gt;= <span class="number">70</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="BOLL"><a href="#BOLL" class="headerlink" title="BOLL"></a>BOLL</h1><p>BOLL（Bollinger Bands）指标，即布林带。具有通道的作用，可以反映出市场的波动情况。超过上轨，认为是超买；低于下轨，认为是超卖。<br>计算方式是计算一定时期内的收盘价的标准差和均值，然后在均值上加上或减去标准差的倍数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_analysis_boll</span>(<span class="params">df</span>):</span><br><span class="line">    <span class="comment"># 计算Boll</span></span><br><span class="line">    df[<span class="string">&#x27;upper&#x27;</span>], df[<span class="string">&#x27;middle&#x27;</span>], df[<span class="string">&#x27;lower&#x27;</span>] = ta.BBANDS(df[<span class="string">&#x27;close&#x27;</span>], timeperiod=<span class="number">20</span>,</span><br><span class="line">                                                                nbdevup=<span class="number">2</span>,</span><br><span class="line">                                                                nbdevdn=<span class="number">2</span>,</span><br><span class="line">                                                                matype=<span class="number">0</span></span><br><span class="line">                                                        )</span><br><span class="line">    <span class="comment"># 生成布林带买卖信号</span></span><br><span class="line">    <span class="comment"># 买入信号：价格从下向上突破下轨</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;close&#x27;</span>] &gt; df[<span class="string">&#x27;lower&#x27;</span>]) &amp; (df[<span class="string">&#x27;close&#x27;</span>].shift(<span class="number">1</span>) &lt;= df[<span class="string">&#x27;lower&#x27;</span>].shift(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 卖出信号：价格从上向下突破上轨</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;close&#x27;</span>] &lt; df[<span class="string">&#x27;upper&#x27;</span>]) &amp; (df[<span class="string">&#x27;close&#x27;</span>].shift(<span class="number">1</span>) &gt;= df[<span class="string">&#x27;upper&#x27;</span>].shift(<span class="number">1</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="CCI"><a href="#CCI" class="headerlink" title="CCI"></a>CCI</h1><p>CCI（Commodity Channel Index）指标，即商品通道指数。主要用于判断股价是否已超出常态分布范围。<br>计算方式是典型价格与移动平均的差除以平均绝对偏差。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__analysis_cci</span>(<span class="params">df, period=<span class="number">20</span></span>):</span><br><span class="line">    <span class="comment"># 计算典型价格 (Typical Price)</span></span><br><span class="line">    df[<span class="string">&#x27;tp&#x27;</span>] = (df[<span class="string">&#x27;high&#x27;</span>] + df[<span class="string">&#x27;low&#x27;</span>] + df[<span class="string">&#x27;close&#x27;</span>]) / <span class="number">3</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算TP的N周期简单移动平均</span></span><br><span class="line">    df[<span class="string">&#x27;sma_tp&#x27;</span>] = df[<span class="string">&#x27;tp&#x27;</span>].rolling(window=period).mean()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算平均绝对偏差 (Mean Deviation)</span></span><br><span class="line">    df[<span class="string">&#x27;mad&#x27;</span>] = df[<span class="string">&#x27;tp&#x27;</span>].rolling(window=period).apply(<span class="keyword">lambda</span> x: np.mean(np.<span class="built_in">abs</span>(x - x.mean())))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 计算CCI，确保所有操作数都是float类型</span></span><br><span class="line">    df[<span class="string">&#x27;cci&#x27;</span>] = (df[<span class="string">&#x27;tp&#x27;</span>].astype(<span class="built_in">float</span>) - df[<span class="string">&#x27;sma_tp&#x27;</span>].astype(<span class="built_in">float</span>)) / (<span class="number">0.015</span> * df[<span class="string">&#x27;mad&#x27;</span>].astype(<span class="built_in">float</span>))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 处理可能的无穷值或NaN</span></span><br><span class="line">    df[<span class="string">&#x27;cci&#x27;</span>] = df[<span class="string">&#x27;cci&#x27;</span>].replace([np.inf, -np.inf], np.nan).fillna(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成买卖信号</span></span><br><span class="line">    <span class="comment"># 买入信号：CCI从下方上穿-100</span></span><br><span class="line">    df[<span class="string">&#x27;buy_signal&#x27;</span>] = (df[<span class="string">&#x27;cci&#x27;</span>] &gt; -<span class="number">100</span>) &amp; (df[<span class="string">&#x27;cci&#x27;</span>].shift(<span class="number">1</span>) &lt;= -<span class="number">100</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 卖出信号：CCI从上方下穿+100</span></span><br><span class="line">    df[<span class="string">&#x27;sell_signal&#x27;</span>] = (df[<span class="string">&#x27;cci&#x27;</span>] &lt; <span class="number">100</span>) &amp; (df[<span class="string">&#x27;cci&#x27;</span>].shift(<span class="number">1</span>) &gt;= <span class="number">100</span>)</span><br></pre></td></tr></table></figure></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>对于历史上波动率比较大的股票，可以考虑使用CCI指标。然后再考虑支撑位和阻力位。进行买入和卖出。<br>在财报或者重大事件也是很大的影响因素  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/12/21/leetcode10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -729,20 +812,20 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
